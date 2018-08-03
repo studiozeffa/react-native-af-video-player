@@ -40,7 +40,7 @@ const Scrubber = (props) => {
           trackStyle={styles.trackStyle}
           minimumTrackTintColor={theme.scrubberBar}
           maximumTrackTintColor={trackColor}
-          trackClickable
+          trackPressable
         />
       :
         <RNSlider
