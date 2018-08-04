@@ -6,9 +6,7 @@ import Icons from 'react-native-vector-icons/MaterialIcons'
 const backgroundColor = 'transparent'
 
 const styles = StyleSheet.create({
-  playButton: {
-    opacity: 0.9
-  },
+  playButton: {},
   playContainer: {
     flex: 1,
     backgroundColor,
@@ -24,9 +22,9 @@ const PlayButton = props => (
     >
       <Icons
         style={styles.playButton}
-        name={props.paused ? 'play-circle-outline' : 'pause-circle-outline'}
+        name={props.paused ? 'play-arrow' : 'pause'}
         color={props.theme}
-        size={75}
+        size={90}
       />
     </TouchableOpacity>
   </View>

@@ -31,7 +31,6 @@ react-native link react-native-video
 react-native link react-native-keep-awake
 react-native link react-native-vector-icons
 react-native link react-native-orientation
-react-native link react-native-linear-gradient
 ```
 
 ## Simple Usage
@@ -92,7 +91,7 @@ lockPortraitOnFsExit  | bool     | No       | false                     | Keep P
 lockRatio             | number   | No       | undefined                 | Force a specific ratio to the Video player. e.g. lockRatio={16 / 9}
 onLoad                | function | No       | (data) => {}              | Returns data once video is loaded
 onProgress            | function | No       | (progress) => {}          | Returns progress data
-onEnd                 | function | No       | () => {}                  | Invoked when video finishes playing  
+onEnd                 | function | No       | () => {}                  | Invoked when video finishes playing
 onError               | function | No       | (error) => {}             | Returns an error message argument
 onPlay                | function | No       | (playing) => {}           | Returns a boolean during playback
 error                 | boolean, object | No | true                     | Pass in an object to Alert. See https://facebook.github.io/react-native/docs/alert.html

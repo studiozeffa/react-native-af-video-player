@@ -3,7 +3,6 @@
   "version": "0.2.1",
   "dependencies": {
     "react-native-keep-awake": "^3.1.0",
-    "react-native-linear-gradient": "^2.3.0",
     "react-native-orientation": "^3.1.0",
     "react-native-slider": "https://github.com/studiozeffa/react-native-slider#installable/track-pressable",
     "react-native-vector-icons": "^5.0.0",

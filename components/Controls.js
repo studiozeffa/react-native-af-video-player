@@ -17,7 +17,10 @@ import {
 const styles = StyleSheet.create({
   container: {
     ...StyleSheet.absoluteFillObject,
-    zIndex: 99
+    zIndex: 99,
+  },
+  overlay: {
+    backgroundColor: 'rgba(0,0,0,0.55)',
   },
   flex: {
     flex: 1
@@ -107,7 +110,7 @@ class Controls extends Component {
 
   loading() {
     return (
-      <View style={styles.container}>
+      <View style={[styles.container, styles.overlay]}>
         <Loading theme={this.props.theme.loading} />
       </View>
     )
@@ -134,7 +137,7 @@ class Controls extends Component {
 
     return (
       <Touchable onPress={() => this.hideControls()}>
-        <Animated.View style={[styles.container, { opacity: this.animControls }]}>
+        <Animated.View style={[styles.container, styles.overlay, { opacity: this.animControls }]}>
           <TopBar
             title={title}
             logo={logo}
