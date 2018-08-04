@@ -1,12 +1,6 @@
-import React, { Component } from 'react'
-import PropTypes from 'prop-types'
-import {
-  StyleSheet,
-  Animated,
-  View
-} from 'react-native'
-
-const backgroundColor = 'rgba(255,255,255,0.25)'
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+import { StyleSheet, Animated, View } from 'react-native';
 
 const styles = StyleSheet.create({
   outerBar: {
@@ -15,40 +9,38 @@ const styles = StyleSheet.create({
     flexDirection: 'row'
   },
   completed: {
-    height: 3
-  },
-  incomplete: {
-    height: 3,
-    backgroundColor
+    height: 1
   }
-})
+});
 
 class ProgressBar extends Component {
-  constructor() {
-    super()
-    this.complete = new Animated.Value(0)
-    this.incomplete = new Animated.Value(1)
+  constructor(props) {
+    super(props);
+    this.complete = new Animated.Value(props.progress);
   }
 
   render() {
-    const { progress, theme } = this.props
-    const incomplete = 1 - progress
-    Animated.parallel([
-      Animated.timing(this.complete, { toValue: progress, duration: 250 }),
-      Animated.timing(this.incomplete, { toValue: incomplete, duration: 250 })
-    ]).start()
+    const { progress, theme } = this.props;
+    Animated.timing(this.complete, {
+      toValue: progress,
+      duration: 250
+    }).start();
     return (
       <View style={styles.outerBar}>
-        <Animated.View style={[{ flex: this.complete, backgroundColor: theme }, styles.completed]} />
-        <Animated.View style={[{ flex: this.incomplete }, styles.incomplete]} />
+        <Animated.View
+          style={[
+            { flex: this.complete, backgroundColor: theme },
+            styles.completed
+          ]}
+        />
       </View>
-    )
+    );
   }
 }
 
 ProgressBar.propTypes = {
   progress: PropTypes.number.isRequired,
   theme: PropTypes.string.isRequired
-}
+};
 
-export { ProgressBar }
+export { ProgressBar };
