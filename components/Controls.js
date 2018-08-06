@@ -144,6 +144,7 @@ class Controls extends Component {
             more={more}
             onMorePress={() => onMorePress()}
             theme={{ title: theme.title, more: theme.more }}
+            textStyle={theme.textStyle}
           />
           <Animated.View
             style={[styles.flex, { transform: [{ scale: this.scale }] }]}

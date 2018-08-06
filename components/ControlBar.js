@@ -1,7 +1,7 @@
-import React from 'react'
-import PropTypes from 'prop-types'
-import { View, StyleSheet } from 'react-native'
-import { ToggleIcon, Time, Scrubber } from './'
+import React from 'react';
+import PropTypes from 'prop-types';
+import { View, StyleSheet } from 'react-native';
+import { ToggleIcon, Time, Scrubber } from './';
 
 const styles = StyleSheet.create({
   container: {
@@ -10,9 +10,9 @@ const styles = StyleSheet.create({
     alignSelf: 'stretch',
     justifyContent: 'flex-end'
   }
-})
+});
 
-const ControlBar = (props) => {
+const ControlBar = props => {
   const {
     onSeek,
     onSeekRelease,
@@ -23,16 +23,23 @@ const ControlBar = (props) => {
     fullscreen,
     theme,
     inlineOnly
-  } = props
+  } = props;
 
   return (
     <View style={styles.container}>
-      <Time time={currentTime} theme={theme.seconds} />
+      <Time
+        time={currentTime}
+        theme={theme.seconds}
+        textStyle={theme.textStyle}
+      />
       <Scrubber
         onSeek={pos => onSeek(pos)}
         onSeekRelease={pos => onSeekRelease(pos)}
         progress={progress}
-        theme={{ scrubberThumb: theme.scrubberThumb, scrubberBar: theme.scrubberBar }}
+        theme={{
+          scrubberThumb: theme.scrubberThumb,
+          scrubberBar: theme.scrubberBar
+        }}
       />
       <ToggleIcon
         paddingLeft
@@ -43,19 +50,24 @@ const ControlBar = (props) => {
         iconOn="volume-mute"
         size={20}
       />
-      <Time time={duration} theme={theme.duration} />
-      { !inlineOnly &&
-      <ToggleIcon
-        paddingRight
-        onPress={() => props.toggleFS()}
-        iconOff="fullscreen"
-        iconOn="fullscreen-exit"
-        isOn={fullscreen}
-        theme={theme.fullscreen}
-      />}
+      <Time
+        time={duration}
+        theme={theme.duration}
+        textStyle={theme.textStyle}
+      />
+      {!inlineOnly && (
+        <ToggleIcon
+          paddingRight
+          onPress={() => props.toggleFS()}
+          iconOff="fullscreen"
+          iconOn="fullscreen-exit"
+          isOn={fullscreen}
+          theme={theme.fullscreen}
+        />
+      )}
     </View>
-  )
-}
+  );
+};
 
 ControlBar.propTypes = {
   toggleFS: PropTypes.func.isRequired,
@@ -69,6 +81,6 @@ ControlBar.propTypes = {
   currentTime: PropTypes.number.isRequired,
   duration: PropTypes.number.isRequired,
   theme: PropTypes.object.isRequired
-}
+};
 
-export { ControlBar }
+export { ControlBar };

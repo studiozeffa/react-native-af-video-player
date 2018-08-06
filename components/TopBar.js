@@ -1,17 +1,12 @@
-import React from 'react'
-import PropTypes from 'prop-types'
+import React from 'react';
+import PropTypes from 'prop-types';
 
-import {
-  View,
-  StyleSheet,
-  Text,
-  Image
-} from 'react-native'
+import { View, StyleSheet, Text, Image } from 'react-native';
 
-import { ToggleIcon } from './'
-import { checkSource } from './utils'
+import { ToggleIcon } from './';
+import { checkSource } from './utils';
 
-const backgroundColor = 'transparent'
+const backgroundColor = 'transparent';
 
 const styles = StyleSheet.create({
   container: {
@@ -35,28 +30,29 @@ const styles = StyleSheet.create({
     height: 25,
     width: 25
   }
-})
+});
 
-const TopBar = (props) => {
-  const {
-    logo,
-    more,
-    title,
-    theme,
-    onMorePress
-  } = props
+const TopBar = props => {
+  const { logo, more, title, theme, textStyle, onMorePress } = props;
+
   return (
     <View style={styles.container}>
       <View style={styles.row}>
-        { logo && <Image style={styles.logo} resizeMode="contain" {...checkSource(logo)} />}
+        {logo && (
+          <Image
+            style={styles.logo}
+            resizeMode="contain"
+            {...checkSource(logo)}
+          />
+        )}
         <Text
-          style={[styles.title, { color: theme.title }]}
+          style={[styles.title, textStyle, { color: theme.title }]}
           numberOfLines={1}
           ellipsizeMode="tail"
         >
           {title}
         </Text>
-        { more &&
+        {more && (
           <ToggleIcon
             style={styles.more}
             onPress={() => onMorePress()}
@@ -66,18 +62,19 @@ const TopBar = (props) => {
             theme={theme.more}
             size={25}
           />
-        }
+        )}
       </View>
     </View>
-  )
-}
+  );
+};
 
 TopBar.propTypes = {
   title: PropTypes.string.isRequired,
   logo: PropTypes.string,
   more: PropTypes.bool.isRequired,
   onMorePress: PropTypes.func.isRequired,
-  theme: PropTypes.object.isRequired
-}
+  theme: PropTypes.object.isRequired,
+  textStyle: PropTypes.any
+};
 
-export { TopBar }
+export { TopBar };
