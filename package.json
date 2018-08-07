@@ -3,10 +3,10 @@
   "version": "0.2.1",
   "dependencies": {
     "react-native-keep-awake": "^3.1.0",
-    "react-native-orientation": "^3.1.0",
+    "react-native-orientation": "^3.1.3",
     "react-native-slider": "https://github.com/studiozeffa/react-native-slider#installable/track-pressable",
     "react-native-vector-icons": "^5.0.0",
-    "react-native-video": "^3.1.0"
+    "react-native-video": "^3.2.0"
   },
   "devDependencies": {
     "babel-cli": "^6.26.0",
