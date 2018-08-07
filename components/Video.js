@@ -89,7 +89,7 @@ class Video extends Component {
   onLoad(data) {
     if (!this.state.loading) return
     this.props.onLoad(data)
-    const { height, width } = data.naturalSize   
+    const { height, width } = data.naturalSize
     const ratio = height === 'undefined' && width === 'undefined' ?
       (9 / 16) : (height / width)
     const inlineHeight = this.props.lockRatio ?
@@ -435,11 +435,13 @@ class Video extends Component {
 Video.propTypes = {
   url: PropTypes.oneOfType([
     PropTypes.string,
-    PropTypes.number
+    PropTypes.number,
+    PropTypes.object
   ]).isRequired,
   placeholder: PropTypes.oneOfType([
     PropTypes.string,
-    PropTypes.number
+    PropTypes.number,
+    PropTypes.object
   ]),
   style: PropTypes.oneOfType([
     PropTypes.object,
@@ -468,7 +470,11 @@ Video.propTypes = {
   rate: PropTypes.number,
   volume: PropTypes.number,
   lockRatio: PropTypes.number,
-  logo: PropTypes.string,
+  logo: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.number,
+    PropTypes.object
+  ]),
   title: PropTypes.string,
   theme: PropTypes.object,
   resizeMode: PropTypes.string

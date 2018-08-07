@@ -70,7 +70,11 @@ const TopBar = props => {
 
 TopBar.propTypes = {
   title: PropTypes.string.isRequired,
-  logo: PropTypes.string,
+  logo: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.number,
+    PropTypes.object
+  ]),
   more: PropTypes.bool.isRequired,
   onMorePress: PropTypes.func.isRequired,
   theme: PropTypes.object.isRequired,
