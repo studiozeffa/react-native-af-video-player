@@ -1,9 +1,9 @@
-import React from 'react'
-import PropTypes from 'prop-types'
-import { View, StyleSheet, TouchableOpacity } from 'react-native'
-import Icons from 'react-native-vector-icons/MaterialIcons'
+import React from 'react';
+import PropTypes from 'prop-types';
+import { View, StyleSheet, TouchableOpacity } from 'react-native';
+import Icon from 'react-native-vector-icons/MaterialIcons';
 
-const backgroundColor = 'transparent'
+const backgroundColor = 'transparent';
 
 const styles = StyleSheet.create({
   playButton: {},
@@ -12,28 +12,55 @@ const styles = StyleSheet.create({
     backgroundColor,
     alignItems: 'center',
     justifyContent: 'center'
+  },
+  playIconContainer: {
+    position: 'relative'
+  },
+  playIconBackground: {
+    position: 'absolute',
+    // Assumes an icon size of 90
+    top: 22,
+    bottom: 22,
+    left: 22,
+    right: 22
   }
-})
+});
 
-const PlayButton = props => (
-  <View style={styles.playContainer}>
-    <TouchableOpacity
-      onPress={() => props.onPress()}
-    >
-      <Icons
-        style={styles.playButton}
-        name={props.paused ? 'play-arrow' : 'pause'}
-        color={props.theme}
-        size={90}
-      />
-    </TouchableOpacity>
-  </View>
-)
+const PlayButton = ({ onPress, theme, paused }) => {
+  const isCircleTheme =
+    theme.centerBackground && theme.centerBackground !== 'transparent';
+  const playIcon = isCircleTheme ? 'play-circle-filled' : 'play-arrow';
+  const pausedIcon = isCircleTheme ? 'pause-circle-filled' : 'pause';
+  const iconColor = isCircleTheme ? 'centerBackground' : 'center';
+
+  return (
+    <View style={styles.playContainer}>
+      <TouchableOpacity onPress={onPress}>
+        <View style={styles.playIconContainer}>
+          {isCircleTheme && (
+            <View
+              style={[
+                styles.playIconBackground,
+                { backgroundColor: theme.center }
+              ]}
+            />
+          )}
+          <Icon
+            style={styles.playButton}
+            name={paused ? playIcon : pausedIcon}
+            color={theme[iconColor]}
+            size={90}
+          />
+        </View>
+      </TouchableOpacity>
+    </View>
+  );
+};
 
 PlayButton.propTypes = {
   onPress: PropTypes.func.isRequired,
   paused: PropTypes.bool.isRequired,
-  theme: PropTypes.string.isRequired
-}
+  theme: PropTypes.object.isRequired
+};
 
-export { PlayButton }
+export { PlayButton };

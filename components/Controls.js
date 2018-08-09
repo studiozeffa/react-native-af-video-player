@@ -127,7 +127,7 @@ class Controls extends Component {
       inlineOnly
     } = this.props;
 
-    const { center, ...controlBar } = theme;
+    const { center, centerBackground, ...controlBar } = theme;
 
     return (
       <Touchable onPress={() => this.hideControls()}>
@@ -153,7 +153,7 @@ class Controls extends Component {
               onPress={() => this.props.togglePlay()}
               paused={paused}
               loading={loading}
-              theme={center}
+              theme={{ center, centerBackground }}
             />
           </Animated.View>
           <ControlBar

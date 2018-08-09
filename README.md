@@ -73,7 +73,6 @@ loop                  | bool     | No       | false                     | Allows
 title                 | string   | No       | ''                        | Adds a title of your video at the top of the player
 placeholder           | string   | No       | undefined                 | Adds an image placeholder while it's loading and stopped at the beginning
 logo                  | string   | No       | undefined                 | Adds an image logo at the top left corner of the video
-theme                 | string   | No       | 'white'                   | Adds an optional theme colour to the players controls
 style                 | number, object | No | {}                        | Apply styles directly to the Video player (ignored in fullscreen mode)
 resizeMode            | string   | No       | 'contain'                 | Fills the whole screen at aspect ratio. contain, cover etc
 rotateToFullScreen    | bool     | No       | false                     | Tapping the fullscreen button will rotate the screen. Also rotating the screen will automatically switch to fullscreen mode
@@ -81,6 +80,7 @@ fullScreenOnly        | bool     | No       | false                     | This w
 inlineOnly            | bool     | No       | false                     | This hides the fullscreen button and only plays the video in inline mode
 playInBackground      | bool     | No       | false                     | Audio continues to play when app enters background.
 playWhenInactive      | bool     | No       | false                     | [iOS] Video continues to play when control or notification center are shown.
+playButtonCircle      | bool     | No       | false                     | Use alternative 'circle' based icons for the play and pause button. Set the 'centerBackground' theme value to change the colour of the circle.
 rate                  | number   | No       | 1                         | Adjusts the speed of the video. 0 = stopped, 1.0 = normal
 volume                | number   | No       | 1                         | Adjusts the volume of the video. 0 = mute, 1.0 = full volume
 onMorePress           | function | No       | undefined                 | Adds an action button at the top right of the player. Use this callback function for your own use. e.g share link
@@ -107,6 +107,7 @@ To toggle play/pause manually, you can do it like so:
     title: '#FFF',
     more: '#446984',
     center: '#7B8F99',
+    centerBackground: '#DBD5C7',
     fullscreen: '#446984',
     volume: '#A5957B',
     scrubberThumb: '#234458',

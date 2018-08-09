@@ -328,7 +328,6 @@ class Video extends Component {
       throw new Error(
         `Current time (${seconds}) exceeded the duration ${this.state.duration}`
       );
-      return false;
     }
     return this.onSeekRelease(percent);
   }
