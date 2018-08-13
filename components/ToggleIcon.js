@@ -1,49 +1,44 @@
-import React from 'react'
-import PropTypes from 'prop-types'
-import { View, StyleSheet, TouchableOpacity } from 'react-native'
-import Icons from 'react-native-vector-icons/MaterialIcons'
+import React from 'react';
+import PropTypes from 'prop-types';
+import { StyleSheet, TouchableOpacity } from 'react-native';
+import Icons from 'react-native-vector-icons/MaterialIcons';
 
-const backgroundColor = 'transparent'
+const backgroundColor = 'transparent';
+
+const padding = 5;
 
 const styles = StyleSheet.create({
   btnContainer: {
     alignItems: 'center',
     backgroundColor,
-    justifyContent: 'center'
+    justifyContent: 'center',
+    padding: padding
   }
-})
+});
 
-const ToggleIcon = (props) => {
-  const {
-    paddingLeft,
-    paddingRight,
-    isOn,
-    iconOn,
-    iconOff,
-    theme,
-    size
-  } = props
+const ToggleIcon = props => {
+  const { isOn, iconOn, iconOff, theme, size, largeHitZone } = props;
 
-  const padding = {
-    paddingLeft: paddingLeft ? 10 : 0,
-    paddingRight: paddingRight ? 10 : 0
-  }
+  const baseHitZone = size + padding * 2 + 10;
+  const fullHitZone = baseHitZone + (largeHitZone ? 30 : 10);
+
+  const hitSlop = {
+    top: fullHitZone,
+    bottom: baseHitZone,
+    left: fullHitZone,
+    right: fullHitZone
+  };
 
   return (
-    <View style={styles.btnContainer}>
-      <TouchableOpacity
-        onPress={() => props.onPress()}
-      >
-        <Icons
-          style={padding}
-          name={isOn ? iconOn : iconOff}
-          color={theme}
-          size={size}
-        />
-      </TouchableOpacity>
-    </View>
-  )
-}
+    <TouchableOpacity
+      style={styles.btnContainer}
+      onPress={() => props.onPress()}
+      hitSlop={hitSlop}
+    >
+      <Icons name={isOn ? iconOn : iconOff} color={theme} size={size} />
+    </TouchableOpacity>
+  );
+};
 
 ToggleIcon.propTypes = {
   onPress: PropTypes.func,
@@ -51,17 +46,15 @@ ToggleIcon.propTypes = {
   iconOff: PropTypes.string.isRequired,
   iconOn: PropTypes.string.isRequired,
   theme: PropTypes.string.isRequired,
-  size: PropTypes.number,
-  paddingRight: PropTypes.bool,
-  paddingLeft: PropTypes.bool
-}
+  size: PropTypes.number.isRequired,
+  largeHitZone: PropTypes.bool
+};
 
 ToggleIcon.defaultProps = {
   onPress: undefined,
   isOn: false,
-  size: 25,
-  paddingRight: false,
-  paddingLeft: false
-}
+  style: null,
+  largeHitZone: false
+};
 
-export { ToggleIcon }
+export { ToggleIcon };

@@ -390,6 +390,8 @@ class Video extends Component {
       resizeMode,
       onMorePress,
       inlineOnly,
+      hideInlineControlBar,
+      hideMuteControl,
       playInBackground,
       playWhenInactive
     } = this.props;
@@ -467,6 +469,8 @@ class Video extends Component {
           onMorePress={() => onMorePress()}
           theme={setTheme}
           inlineOnly={inlineOnly}
+          hideInlineControlBar={hideInlineControlBar}
+          hideMuteControl={hideMuteControl}
         />
       </Animated.View>
     );
@@ -495,6 +499,8 @@ Video.propTypes = {
   autoPlay: PropTypes.bool,
   inlineOnly: PropTypes.bool,
   fullScreenOnly: PropTypes.bool,
+  hideInlineControlBar: PropTypes.bool,
+  hideMuteControl: PropTypes.bool,
   playInBackground: PropTypes.bool,
   playWhenInactive: PropTypes.bool,
   rotateToFullScreen: PropTypes.bool,
@@ -528,6 +534,8 @@ Video.defaultProps = {
   autoPlay: false,
   inlineOnly: false,
   fullScreenOnly: false,
+  hideInlineControlBar: false,
+  hideMuteControl: false,
   playInBackground: false,
   playWhenInactive: false,
   rotateToFullScreen: false,

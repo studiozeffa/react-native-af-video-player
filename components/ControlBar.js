@@ -8,7 +8,8 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     height: 35,
     alignSelf: 'stretch',
-    justifyContent: 'flex-end'
+    justifyContent: 'flex-end',
+    paddingHorizontal: 5
   }
 });
 
@@ -22,8 +23,14 @@ const ControlBar = props => {
     muted,
     fullscreen,
     theme,
-    inlineOnly
+    inlineOnly,
+    hidden,
+    hideMute
   } = props;
+
+  if (hidden) {
+    return <View style={styles.container} />;
+  }
 
   return (
     <View style={styles.container}>
@@ -41,15 +48,17 @@ const ControlBar = props => {
           scrubberBar: theme.scrubberBar
         }}
       />
-      <ToggleIcon
-        paddingLeft
-        theme={theme.volume}
-        onPress={() => props.toggleMute()}
-        isOn={muted}
-        iconOff="volume-up"
-        iconOn="volume-mute"
-        size={20}
-      />
+      {!hideMute && (
+        <ToggleIcon
+          theme={theme.volume}
+          onPress={() => props.toggleMute()}
+          isOn={muted}
+          size={20}
+          iconOff="volume-up"
+          iconOn="volume-mute"
+          style={styles.muteIcon}
+        />
+      )}
       <Time
         time={duration}
         theme={theme.duration}
@@ -57,10 +66,11 @@ const ControlBar = props => {
       />
       {!inlineOnly && (
         <ToggleIcon
-          paddingRight
           onPress={() => props.toggleFS()}
           iconOff="fullscreen"
           iconOn="fullscreen-exit"
+          size={25}
+          largeHitZone
           isOn={fullscreen}
           theme={theme.fullscreen}
         />
@@ -80,7 +90,9 @@ ControlBar.propTypes = {
   progress: PropTypes.number.isRequired,
   currentTime: PropTypes.number.isRequired,
   duration: PropTypes.number.isRequired,
-  theme: PropTypes.object.isRequired
+  theme: PropTypes.object.isRequired,
+  hidden: PropTypes.bool.isRequired,
+  hideMute: PropTypes.bool.isRequired
 };
 
 export { ControlBar };

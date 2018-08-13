@@ -124,7 +124,9 @@ class Controls extends Component {
       currentTime,
       duration,
       theme,
-      inlineOnly
+      inlineOnly,
+      hideInlineControlBar,
+      hideMuteControl
     } = this.props;
 
     const { center, centerBackground, ...controlBar } = theme;
@@ -163,6 +165,7 @@ class Controls extends Component {
             muted={muted}
             paused={paused}
             fullscreen={fullscreen}
+            hidden={!fullscreen && hideInlineControlBar}
             onSeek={pos => this.onSeek(pos)}
             onSeekRelease={pos => this.onSeekRelease(pos)}
             progress={progress}
@@ -170,6 +173,7 @@ class Controls extends Component {
             duration={duration}
             theme={controlBar}
             inlineOnly={inlineOnly}
+            hideMute={hideMuteControl}
           />
         </Animated.View>
       </Touchable>
@@ -207,7 +211,9 @@ Controls.propTypes = {
     PropTypes.number,
     PropTypes.object
   ]),
-  theme: PropTypes.object.isRequired
+  theme: PropTypes.object.isRequired,
+  hideInlineControlBar: PropTypes.bool.isRequired,
+  hideMuteControl: PropTypes.bool.isRequired
 };
 
 export { Controls };

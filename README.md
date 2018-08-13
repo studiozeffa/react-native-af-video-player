@@ -78,9 +78,11 @@ resizeMode            | string   | No       | 'contain'                 | Fills 
 rotateToFullScreen    | bool     | No       | false                     | Tapping the fullscreen button will rotate the screen. Also rotating the screen will automatically switch to fullscreen mode
 fullScreenOnly        | bool     | No       | false                     | This will play only in fullscreen mode
 inlineOnly            | bool     | No       | false                     | This hides the fullscreen button and only plays the video in inline mode
+hideInlineControlBar  | bool     | No       | false                     | Hides the control bar when in inline mode. Complements the 'fullScreenOnly' prop by only showing the minimal information in inline 'preview' mode.
 playInBackground      | bool     | No       | false                     | Audio continues to play when app enters background.
 playWhenInactive      | bool     | No       | false                     | [iOS] Video continues to play when control or notification center are shown.
 playButtonCircle      | bool     | No       | false                     | Use alternative 'circle' based icons for the play and pause button. Set the 'centerBackground' theme value to change the colour of the circle.
+hideMuteControl       | bool     | No       | false                     | Hides the mute control button in the control bar.
 rate                  | number   | No       | 1                         | Adjusts the speed of the video. 0 = stopped, 1.0 = normal
 volume                | number   | No       | 1                         | Adjusts the volume of the video. 0 = mute, 1.0 = full volume
 onMorePress           | function | No       | undefined                 | Adds an action button at the top right of the player. Use this callback function for your own use. e.g share link

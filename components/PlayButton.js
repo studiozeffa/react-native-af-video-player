@@ -33,9 +33,13 @@ const PlayButton = ({ onPress, theme, paused }) => {
   const pausedIcon = isCircleTheme ? 'pause-circle-filled' : 'pause';
   const iconColor = isCircleTheme ? 'centerBackground' : 'center';
 
+  // Need to disable opacigty onPress for circle theme
+  // otherwise the background shows through on tap
+  const activeOpacity = isCircleTheme ? 1 : 0.5;
+
   return (
     <View style={styles.playContainer}>
-      <TouchableOpacity onPress={onPress}>
+      <TouchableOpacity onPress={onPress} activeOpacity={activeOpacity}>
         <View style={styles.playIconContainer}>
           {isCircleTheme && (
             <View

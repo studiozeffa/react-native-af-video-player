@@ -1,20 +1,16 @@
 import React from 'react' // eslint-disable-line
-import PropTypes from 'prop-types'
-import {
-  View,
-  Platform,
-  StyleSheet,
-  Slider as RNSlider
-} from 'react-native'
-import Slider from 'react-native-slider'
+import PropTypes from 'prop-types';
+import { View, Platform, StyleSheet, Slider as RNSlider } from 'react-native';
+import Slider from 'react-native-slider';
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'center'
+    justifyContent: 'center',
+    padding: 5
   },
   slider: {
-    marginHorizontal: -10
+    // marginHorizontal: -10
   },
   thumbStyle: {
     width: 15,
@@ -23,14 +19,14 @@ const styles = StyleSheet.create({
   trackStyle: {
     borderRadius: 1
   }
-})
+});
 
-const Scrubber = (props) => {
-  const trackColor = 'rgba(255,255,255,0.5)'
-  const { progress, theme, onSeek, onSeekRelease } = props
+const Scrubber = props => {
+  const trackColor = 'rgba(255,255,255,0.5)';
+  const { progress, theme, onSeek, onSeekRelease } = props;
   return (
     <View style={styles.container}>
-      { Platform.OS === 'ios' ?
+      {Platform.OS === 'ios' ? (
         <Slider
           onValueChange={val => onSeek(val)}
           onSlidingComplete={val => onSeekRelease(val)}
@@ -42,7 +38,7 @@ const Scrubber = (props) => {
           maximumTrackTintColor={trackColor}
           trackPressable
         />
-      :
+      ) : (
         <RNSlider
           style={styles.slider}
           onValueChange={val => onSeek(val)}
@@ -52,16 +48,16 @@ const Scrubber = (props) => {
           minimumTrackTintColor={theme.scrubberBar}
           maximumTrackTintColor={trackColor}
         />
-      }
+      )}
     </View>
-  )
-}
+  );
+};
 
 Scrubber.propTypes = {
   onSeek: PropTypes.func.isRequired,
   onSeekRelease: PropTypes.func.isRequired,
   progress: PropTypes.number.isRequired,
   theme: PropTypes.object.isRequired
-}
+};
 
-export { Scrubber }
+export { Scrubber };
